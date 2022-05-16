@@ -36,5 +36,30 @@ namespace Inventory_Management_System_with_ADO.NET.Models
             return dataAccess.ExecuteQuery(sql);
         }
 
+        public Category GetCategoryById(int id)
+        {
+            string sql = "SELECT * FROM Categories WHERE CategoryId="+id;
+            SqlDataReader reader = dataAccess.GetData(sql);
+            reader.Read();
+            Category cat = new Category();
+            cat.CategoryId = (int)reader["CategoryId"];
+            cat.CategoryName = (string)reader["CategoryName"].ToString();
+
+            return cat;
+        }
+
+
+        public int UpdateCategory(Category cat)
+        {
+            string sql = "UPDATE Categories SET CategoryName='" + cat.CategoryName +"' WHERE CategoryId="+cat.CategoryId;
+            return dataAccess.ExecuteQuery(sql);
+        }
+
+        public int DeleteCategory(int id)
+        {
+            string sql = "DELET FROM Categories WHERE CategoryId=" + id;
+            return dataAccess.ExecuteQuery(sql);
+        }
+
     }
 }
