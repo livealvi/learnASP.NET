@@ -15,5 +15,25 @@ namespace Inventory_Management_System_with_ADO.NET.Controllers
             ProductDataAccess pda = new ProductDataAccess();
             return View(pda.GetAllProducts());
         }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            CategoryDataAccess cda = new CategoryDataAccess();
+            ViewData["cats"] = cda.GetAllCategories();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Product pros)
+        {
+            ProductDataAccess pro = new ProductDataAccess();
+            int i = pro.InsertProduct(pros);
+            if (i > 0)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
     }
 }
