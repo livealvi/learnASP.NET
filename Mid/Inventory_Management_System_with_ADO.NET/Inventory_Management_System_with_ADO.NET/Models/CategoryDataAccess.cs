@@ -57,7 +57,7 @@ namespace Inventory_Management_System_with_ADO.NET.Models
 
         public int DeleteCategory(int id)
         {
-            string sql = "DELET FROM Categories WHERE CategoryId=" + id;
+            string sql = "DELETE FROM Categories WHERE CategoryId="+id;
             return dataAccess.ExecuteQuery(sql);
         }
 
