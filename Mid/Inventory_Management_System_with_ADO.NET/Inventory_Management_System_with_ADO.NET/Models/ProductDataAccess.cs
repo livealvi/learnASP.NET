@@ -57,6 +57,11 @@ namespace Inventory_Management_System_with_ADO.NET.Models
             return dataAccess.ExecuteQuery(sql);
         }
 
+        public int DeleteProduct(int id)
+        {
+            string sql = "DELETE FROM Products WHERE ProductId=" + id;
+            return dataAccess.ExecuteQuery(sql);
+        }
 
     }
 }

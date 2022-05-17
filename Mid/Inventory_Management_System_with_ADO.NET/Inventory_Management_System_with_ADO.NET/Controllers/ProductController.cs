@@ -55,5 +55,24 @@ namespace Inventory_Management_System_with_ADO.NET.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            ProductDataAccess pro = new ProductDataAccess();
+            return View(pro.GetProductById(id));
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult ConfirmDelete(int id)
+        {
+            ProductDataAccess pro = new ProductDataAccess();
+            int i = pro.DeleteProduct(id);
+            if (i > 0)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
     }
 }
