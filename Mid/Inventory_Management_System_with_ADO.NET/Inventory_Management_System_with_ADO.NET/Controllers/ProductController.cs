@@ -35,5 +35,25 @@ namespace Inventory_Management_System_with_ADO.NET.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            ProductDataAccess pro = new ProductDataAccess();
+
+            return View(pro.GetProductById(id));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Product prod)
+        {
+            ProductDataAccess pro = new ProductDataAccess();
+            int i = pro.UpdateProduct(prod);
+            if (i > 0)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
     }
 }
